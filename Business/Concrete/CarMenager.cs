@@ -2,6 +2,7 @@
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -20,21 +21,16 @@ namespace Business.Concrete
        
         public void Add(Car car)
         {
-            _carDal.Add(car);
-            Console.WriteLine("Aracin Brandl Id'sini belirleyin:");
-            int BrandlId = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Aracın BrandId'sini belirleyin: ");
-            int BrandId = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Aracın ColorId'sini belirleyin: ");
-            int ColorId = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Aracın ModelYear degerini belirleyin: ");
-            string ModelYear = Console.ReadLine();
-            Console.Write("Aracın DailyPrice degerini belirleyin: ");
-            decimal DailyPrice = Convert.ToDecimal(Console.ReadLine());
-            Console.Write("Arac Aciklamasini Yaziniz: ");
-            string Description = Console.ReadLine();
-            Console.Clear();
-            _carDal.Add(new Car { BrandId = BrandlId, ColorId = ColorId, ModelYear = ModelYear, DailyPrice = DailyPrice, Description = Description });
+           
+           
+            if (car.BrandId==0)
+            {
+                Console.WriteLine("Error message");
+            }
+            else
+            {
+                _carDal.Add(car);
+            }
         }
 
         public void Delete(Car car)
@@ -52,11 +48,13 @@ namespace Business.Concrete
 
         public List<Car> GetByBrandId(int brandId)
         {
-            return _carDal.GetByBrandId(brandId);
+            return new List<Car>(_carDal.GetAll(c => c.BrandId == brandId));
             
-           
-                
-               
+        }
+
+        public List<CarDetailDto> GetCarDetails()
+        {
+            return new List<CarDetailDto>(_carDal.GetCarDetails());
         }
 
         public void Update(Car car)
