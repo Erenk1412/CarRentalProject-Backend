@@ -23,7 +23,7 @@ namespace WebAPI.Controllers
             var result = _colorService.GetAll();
             if (result.Success==true)
             {
-                return Ok(result.Data + result.Message);
+                return Ok(result);
             }
             return BadRequest(result.Message);
         }
