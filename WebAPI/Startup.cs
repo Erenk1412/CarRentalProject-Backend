@@ -30,17 +30,19 @@ namespace WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+           //NOT>>Autofac kullanacaðýz. Bu kodlarý commentleyip program.cs de Autofac yapýlandýrmasý yaptýk.
            
-            services.AddSingleton<ICarService, CarMenager>();
-            services.AddSingleton<ICarDal, EfCarDal>();
+            
+            //services.AddSingleton<ICarService, CarMenager>();
+            //services.AddSingleton<ICarDal, EfCarDal>();
 
 
-            services.AddSingleton<IBrandService, BrandMenager>();
-            services.AddSingleton<IBrandDal, EfBrandDal>();
+            //services.AddSingleton<IBrandService, BrandMenager>();
+            //services.AddSingleton<IBrandDal, EfBrandDal>();
 
 
-            services.AddSingleton<IColorService, ColorMenager>();
-            services.AddSingleton<IColorDal, EfColorDal>();
+            //services.AddSingleton<IColorService, ColorMenager>();
+            //services.AddSingleton<IColorDal, EfColorDal>();
 
         }
 
