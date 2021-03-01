@@ -25,6 +25,13 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<EfColorDal>().As<IColorDal>().SingleInstance();
 
 
+            builder.RegisterType<ImageMenager>().As<IImageService>().SingleInstance();
+            builder.RegisterType<EfImageDal>().As<IImageDal>().SingleInstance();
+
+
+
+
+
             //var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 
             //builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces().EnableInterfaceInterceptors(new ProxyGenerationOptions()
