@@ -8,10 +8,10 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    public class ColorMenager : IColorService
+    public class ColorManager : IColorService
     {
         IColorDal _colorDal;
-        public ColorMenager(IColorDal colorDal)
+        public ColorManager(IColorDal colorDal)
         {
             _colorDal = colorDal;
         }

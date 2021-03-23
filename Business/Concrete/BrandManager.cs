@@ -9,10 +9,10 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    public class BrandMenager : IBrandService
+    public class BrandManager : IBrandService
     {
         IBrandDal _brandDal;
-        public BrandMenager(IBrandDal brandDal)
+        public BrandManager(IBrandDal brandDal)
         {
             _brandDal=brandDal;
         }

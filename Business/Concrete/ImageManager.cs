@@ -14,10 +14,10 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    public class ImageMenager : IImageService
+    public class ImageManager : IImageService
     {
         IImageDal _imageDal;
-        public ImageMenager(IImageDal imageDal)
+        public ImageManager(IImageDal imageDal)
         {
             _imageDal = imageDal;
         }

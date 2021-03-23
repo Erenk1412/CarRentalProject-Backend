@@ -21,7 +21,7 @@ namespace ConsoleUI
 
         private static void ColorGetTest()
         {
-            ColorMenager colorMenager = new ColorMenager(new EfColorDal());
+            ColorManager colorMenager = new ColorManager(new EfColorDal());
             foreach (var color in colorMenager.GetById(2).Data)
             {
                 Console.WriteLine(color.ColorName);
@@ -30,7 +30,7 @@ namespace ConsoleUI
 
         private static void DtoTest()
         {
-            CarMenager carMenager = new CarMenager(new EfCarDal());
+            CarManager carMenager = new CarManager(new EfCarDal());
         
                 foreach (var car in carMenager.GetCarDetails().Data)
                 {
@@ -42,7 +42,7 @@ namespace ConsoleUI
 
         private static void AddCar()
         {
-            CarMenager carMenager = new CarMenager(new EfCarDal());
+            CarManager carMenager = new CarManager(new EfCarDal());
             carMenager.Add(new Car { BrandId = 3, ColorId = 4, ModelYear = "2016", DailyPrice = 150000, Description = "Dizel" });
             foreach (var item in carMenager.GetAll().Data)
             {
@@ -52,7 +52,7 @@ namespace ConsoleUI
 
         private static void ColorTest()
         {
-            ColorMenager colorMenager = new ColorMenager(new EfColorDal());
+            ColorManager colorMenager = new ColorManager(new EfColorDal());
             foreach (var color in colorMenager.GetAll().Data)
             {
                 Console.WriteLine(color.ColorName);
