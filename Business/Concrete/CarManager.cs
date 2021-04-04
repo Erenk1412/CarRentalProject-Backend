@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Performance;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Business;
 using Core.Utilities.Results;
@@ -22,7 +23,7 @@ namespace Business.Concrete
         {
             _carDal = carDal;
         }
-
+      
       [ValidationAspect(typeof(CarValidator))] 
         public IResult Add(Car car)
         {
@@ -44,8 +45,8 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CarDeleted);
             
            
-        } 
-
+        }
+        [PerformanceAspect(5)]
         public IDataResult<List<Car>> GetAll()
         {
             if (DateTime.Now.Hour==22)
