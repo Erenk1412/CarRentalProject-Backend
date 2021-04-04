@@ -6,6 +6,7 @@ using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -23,7 +24,7 @@ namespace Business.Concrete
         [ValidationAspect(typeof(RentalValidator))]
         public IResult Add(Rental rental)
         {
-            var result = BusinessRules.Run(WillLeasedCarAvailable(rental.CarId));
+            var result = BusinessRules.Run(CheckCarIsAvailable(rental.CarId));
             if (result !=null)
             {
                 return result;
@@ -36,43 +37,52 @@ namespace Business.Concrete
         public IResult Delete(Rental rental)
         {
             _rentalDal.Delete(rental);
-            return new SuccessResult();
+            return new SuccessResult(Messages.RentalDeleted);
         }
 
-        public IDataResult<Rental> GetById(int rentalId)
+        public IDataResult<List<Rental>> GetByCarId(int carId)
         {
-            return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.Id == rentalId));
+            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(r => r.CarId == carId ));
         }
 
         public IDataResult<List<Rental>> GetRentals()
         {
-            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll());
+            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(),Messages.GetRentalsMessage);
         }
 
         public IResult Update(Rental rental)
         {
             _rentalDal.Update(rental);
-            return new SuccessResult();
+            return new SuccessResult(Messages.RentalUpdated);
+        }
+
+        public IDataResult<List<RentalDetailDto>> GetRentalDetails()
+        {
+            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetails(), Messages.RentalSummary);
+        }
+
+        public IResult RentalControl(int carId)
+        {
+            if (_rentalDal.Get(c => c.CarId == carId && c.ReturnDate == null) != null)
+                return new ErrorResult(Messages.CarNotAvaible);
+            else
+                return new SuccessResult(Messages.GoToRent);
         }
 
 
 
         //RentalMenager Business Rules
-        private IResult WillLeasedCarAvailable(int carId)
+        private IResult CheckCarIsAvailable(int carId)
         {
-            if (_rentalDal.Get(p => p.CarId == carId && p.ReturnDate == null) != null)
+            if (_rentalDal.Get(c => c.CarId == carId && c.ReturnDate == null ) != null)
                 return new ErrorResult(Messages.CarNotAvaible);
             else
                 return new SuccessResult();
         }
 
-        private IResult CanARentalCarBeReturned(int carId)
-        {
-            if (_rentalDal.Get(p => p.CarId == carId && p.ReturnDate == null) == null)
-                return new ErrorResult(Messages.CarNotAvaible);
-            else
-                return new SuccessResult();
-        }
+      
+        
 
+        
     }
 }

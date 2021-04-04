@@ -23,7 +23,7 @@ namespace WebAPI.Controllers
         //public IActionResult Add(User user)
         //{
         //    var result = _userService.Add(user);
-        //    if (result.Success==true)
+        //    if (result.Success == true)
         //    {
         //        return Ok(result);
         //    }

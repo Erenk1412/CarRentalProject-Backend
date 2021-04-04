@@ -50,6 +50,27 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+        [HttpPost("update")]
+        public IActionResult Update(Car car)
+        {
+            var result = _carService.Update(car);
+            if (result.Success == true)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpPost("delete")]
+        public IActionResult Delete(Car car)
+        {
+            var result = _carService.Delete(car);
+            if (result.Success == true)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
         [HttpGet("getcardetails")]
         public IActionResult GetCarDetails()
         {
@@ -98,5 +119,17 @@ namespace WebAPI.Controllers
 
         }
 
+        [HttpGet("getcarfilter")]
+        public IActionResult GetCarFilterBrandIdColorId(int brandId, int colorId)
+        {
+            var result = _carService.GetCarFilter(brandId, colorId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
     }
 }
+
+    

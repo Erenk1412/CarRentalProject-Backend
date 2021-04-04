@@ -35,5 +35,32 @@ namespace DataAccess.Concrete.EntityFramework
                 return result.ToList();
             }
         }
+
+        public List<CarDetailDto> GetCarFilter(int brandId, int colorId)
+        {
+            using (SqlCarContext context = new SqlCarContext())
+            {
+                var result = (from car in context.Cars
+                              join color in context.Colors on car.ColorId equals color.ColorId
+                              join brand in context.Brands on car.BrandId equals brand.BrandId
+                              join image in context.Images on car.Id equals image.CarId
+                              where car.ColorId == colorId && brand.BrandId == brandId
+                              select new CarDetailDto
+                              {
+                                  CarId = car.Id,
+                                  CarName = car.CarName,
+                                  BrandId = brand.BrandId,
+                                  DailyPrice = car.DailyPrice,
+                                  Description=car.Description,
+                                  ImagePath=image.ImagePath,
+                                  BrandName = brand.BrandName,
+                                  ColorId = color.ColorId,
+                                  ColorName = color.ColorName,
+                                  ModelYear = car.ModelYear
+                              }).ToList();
+                return result.ToList();
+            }
+        }
+    
     }
 }
