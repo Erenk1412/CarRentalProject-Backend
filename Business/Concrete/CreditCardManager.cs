@@ -26,10 +26,10 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CardAdded);
         }
 
-        public IDataResult<CreditCard> GetByCustomerId(int id)
+        public IDataResult<List<CreditCard>> GetByCustomerId(int id)
         {
-            var result = _creditCardDal.Get(card => card.CustomerId == id);
-            return new SuccessDataResult<CreditCard>(result);
+            
+            return new SuccessDataResult<List<CreditCard>>(_creditCardDal.GetAll(card => card.CustomerId == id));
         }
     }
 }

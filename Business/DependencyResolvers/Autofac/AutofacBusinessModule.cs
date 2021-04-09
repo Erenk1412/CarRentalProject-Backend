@@ -44,7 +44,8 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<CreditCardManager>().As<ICreditCardService>().SingleInstance();
             builder.RegisterType<EfCreditCardDal>().As<ICreditCardDal>().SingleInstance();
 
-
+            builder.RegisterType<FindexManager>().As<IFindexService>().SingleInstance();
+            builder.RegisterType<EfFindexDal>().As<IFindexDal>().SingleInstance();
 
             //var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 

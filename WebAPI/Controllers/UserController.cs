@@ -19,16 +19,48 @@ namespace WebAPI.Controllers
             _userService = userService;
         }
 
-        //[HttpPost("add")]
-        //public IActionResult Add(User user)
-        //{
-        //    var result = _userService.Add(user);
-        //    if (result.Success == true)
-        //    {
-        //        return Ok(result);
-        //    }
-        //    return BadRequest(result);
-        //}
+        [HttpPost("add")]
+        public IActionResult Add(User user)
+        {
+            var result = _userService.Add(user);
+            if (result.Success == true)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
 
+        [HttpPost("update")]
+        public IActionResult Update(User user)
+        {
+            var result = _userService.Update(user);
+            if (result.Success == true)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("getuserbyid")]
+        public IActionResult GetById(int userId)
+        {
+            var result = _userService.GetById(userId);
+            if (result.Success == true)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+         [HttpGet("getuserbyemail")]
+        public IActionResult GetDetailsByEmail(string email)
+        {
+            var result = _userService.GetDetailsByEmail(email);
+            if (result.Success == true)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
     }
 }

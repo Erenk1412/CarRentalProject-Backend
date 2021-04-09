@@ -33,7 +33,7 @@ namespace Business.Constants
         public static string RentalDeleted= "Araç Kira Kaydı Silindi";
         public static string GetRentalsMessage="Araçlar Listelendi";
         public static string RentalUpdated="Araç Güncelleme İşlemi Başarıyla Gerçekleşti";
-        public static string CardAdded ="Ödeme İşleminiz Gerçekleşmiştir";
+        public static string CardAdded ="Kartınız Kaydedilmiştir";
         public static string RentalSummary="Kiralama Özeti";
         public static string GoToRent="Kiralamaya Yönlendiriliyorsunuz";
         public static string CarListedByFilter="Araçlar Filtreye Göre Listelendi";
@@ -47,5 +47,7 @@ namespace Business.Constants
         public static string ErrorColorId="Renk Id sıfır olamaz";
         public static string ErrorDailyPrice="Günlük ücret sıfır TL olamaz";
         public static string ErrorDailyPriceForBrandId="Eğer Markanız Mercedes ise günlük ücret 250 TL veya üzeri olmalı";
+
+        public static string PasswordHasBeenChanged="Şifreniz Değiştirildi";
     }
 }

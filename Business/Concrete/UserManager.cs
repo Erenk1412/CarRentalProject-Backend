@@ -19,10 +19,12 @@ namespace Business.Concrete
         {
             _userDal = userDal;
         }
+
         [ValidationAspect(typeof(UserValidator))]
-        public void Add(User user)
+        public IResult Add(User user)
         {
             _userDal.Add(user);
+            return new SuccessResult();
         }
 
         public IResult Delete(User user)
@@ -40,10 +42,19 @@ namespace Business.Concrete
         {
             return _userDal.Get(u => u.Email == email);
         }
+        public IDataResult<User> GetById(int userId)
+        {
+            return new SuccessDataResult<User>(_userDal.Get(u => u.Id == userId));
+        }
 
         public List<OperationClaim> GetClaims(User user)
         {
             return _userDal.GetClaims(user);
+        }
+
+        public IDataResult<List<User>> GetDetailsByEmail(string email)
+        {
+            return new SuccessDataResult<List<User>>(_userDal.GetAll(u => u.Email == email));
         }
 
         public IResult Update(User user)

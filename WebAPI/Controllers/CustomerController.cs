@@ -29,5 +29,26 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
+        [HttpGet("getbyuserid")]
+        public IActionResult GetCustomersByUserId(int userId)
+        {
+            var result = _customerService.GetCustomersByUserId(userId);
+            if (result.Success == true)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpPost("update")]
+        public IActionResult Update(Customer customer)
+        {
+            var result = _customerService.Update(customer);
+            if (result.Success == true)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
     }
 }
