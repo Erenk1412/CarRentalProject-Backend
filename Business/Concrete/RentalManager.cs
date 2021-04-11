@@ -68,7 +68,10 @@ namespace Business.Concrete
             else
                 return new SuccessResult(Messages.GoToRent);
         }
-
+        public IDataResult<List<Rental>> GetByCustomerId(int customerId)
+        {
+            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(r => r.CustomerId == customerId));
+        }
 
 
         //RentalMenager Business Rules
@@ -80,9 +83,6 @@ namespace Business.Concrete
                 return new SuccessResult();
         }
 
-      
-        
-
-        
+     
     }
 }
