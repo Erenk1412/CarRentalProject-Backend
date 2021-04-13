@@ -4,7 +4,7 @@ Proje bir araç kiralama sitesi projesidir.
 Entities, DataAccess, Business, Core ve WebAPI katmanlarından oluşur.
 Bu projede Katmanlı mimari yapısı ve SOLID prensipleri dikkate alınarak yazılmıştır.
 
-#Projenin İçeriği
+Projenin İçeriği
 
 1.JWT entegrasyonu
 
