@@ -6,10 +6,10 @@ Bu projede Katmanlı mimari yapısı ve SOLID prensipleri dikkate alınarak yaz�
 
 #Projenin İçeriği
 
-JWT entegrasyonu
+1.JWT entegrasyonu
 
-Transaction, Cache, Validation ve Performance aspect'lerinin implementasyonu
+2.Transaction, Cache, Validation ve Performance aspect'lerinin implementasyonu
 
-Validation için FluentValidation desteği
+3.Validation için FluentValidation desteği
 
-Autofac desteği 
+4.Autofac desteği 
